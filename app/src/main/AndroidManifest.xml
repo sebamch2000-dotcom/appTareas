@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dieguito.apptareas">
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -8,36 +8,33 @@
         android:label="appTareas"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"> <!-- Tema general sin barra para usar nuestros propios diseños -->
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
 
-        <!-- 1. Pantalla de Carga (Splash Screen) - Punto de entrada -->
+        <!-- Pantalla de inicio -->
         <activity
-            android:name=".actividades.SplashActivity"
+            android:name=".LoginActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
-        <!-- 2. Pantalla de Inicio de Sesión -->
+        <!-- Registro de usuario -->
         <activity
-            android:name=".actividades.LoginActivity"
+            android:name=".RegistroActivity"
             android:exported="false" />
 
-        <!-- 3. Pantalla de Registro de Usuario -->
+        <!-- Pantalla principal -->
         <activity
-            android:name=".actividades.RegistroActivity"
+            android:name=".MainActivity"
             android:exported="false" />
 
-        <!-- 4. Pantalla Principal (Lista y Filtros de Tareas) -->
+        <!-- Formulario de tareas -->
         <activity
-            android:name=".actividades.MainActivity"
-            android:exported="false" />
-
-        <!-- 5. Pantalla de Formulario (Crear/Editar Tarea) -->
-        <activity
-            android:name=".actividades.FormularioActivity"
+            android:name=".FormularioActivity"
             android:exported="false" />
 
     </application>
