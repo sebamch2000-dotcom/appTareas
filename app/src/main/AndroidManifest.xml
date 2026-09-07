@@ -1,26 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    package="com.dieguito.apptareas">
 
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="appTareas"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppTareas"
-        tools:targetApi="31">
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"> <!-- Tema general sin barra para usar nuestros propios diseños -->
+
+        <!-- 1. Pantalla de Carga (Splash Screen) - Punto de entrada -->
         <activity
-            android:name=".MainActivity"
+            android:name=".actividades.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 2. Pantalla de Inicio de Sesión -->
+        <activity
+            android:name=".actividades.LoginActivity"
+            android:exported="false" />
+
+        <!-- 3. Pantalla de Registro de Usuario -->
+        <activity
+            android:name=".actividades.RegistroActivity"
+            android:exported="false" />
+
+        <!-- 4. Pantalla Principal (Lista y Filtros de Tareas) -->
+        <activity
+            android:name=".actividades.MainActivity"
+            android:exported="false" />
+
+        <!-- 5. Pantalla de Formulario (Crear/Editar Tarea) -->
+        <activity
+            android:name=".actividades.FormularioActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
