@@ -16,7 +16,7 @@
         android:padding="16dp"
         android:gravity="center_vertical">
 
-        <!-- Checkbox para marcar rápidamente como completada[cite: 1] -->
+        <!-- Checkbox para marcar tareas como completadas o en progreso[cite: 1] -->
         <CheckBox
             android:id="@+id/cbCompletada"
             android:layout_width="wrap_content"
@@ -68,15 +68,43 @@
                 android:maxLines="2"
                 android:ellipsize="end"/>
 
-            <TextView
-                android:id="@+id/tvItemFecha"
-                android:layout_width="wrap_content"
+            <!-- Contenedor para mostrar ambas fechas -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Vence: 12/10/2026"
-                android:textSize="12sp"
-                android:textColor="@color/primary"
-                android:drawablePadding="4dp"/>
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <!-- Campo visible para la fecha de creación[cite: 1] -->
+                <TextView
+                    android:id="@+id/tvItemFechaCreacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Creado: 07/09/2026"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginEnd="16dp"/>
+
+                <TextView
+                    android:id="@+id/tvItemFecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vence: 12/10/2026"
+                    android:textSize="12sp"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"/>
+            </LinearLayout>
         </LinearLayout>
+
+        <!-- Botón lateral para eliminar tareas -->
+        <ImageButton
+            android:id="@+id/btnEliminarTarea"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_delete"
+            app:tint="@color/estado_pendiente"
+            android:contentDescription="Eliminar tarea"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
