@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.senati.apptareas.R;
+
 import java.util.Calendar;
 
 public class FormularioActivity extends AppCompatActivity {
