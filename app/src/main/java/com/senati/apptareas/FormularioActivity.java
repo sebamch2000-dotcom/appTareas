@@ -1,5 +1,10 @@
 package com.senati.apptareas;
 
-public class FormularioActivity {
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class FormularioActivity extends AppCompatActivity {
+
 
 }
