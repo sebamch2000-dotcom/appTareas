@@ -1,4 +1,4 @@
-package com.senati.apptareas;
+package com.senati.apptareas.actividades;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
