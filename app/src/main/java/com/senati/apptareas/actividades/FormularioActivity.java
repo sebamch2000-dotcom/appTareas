@@ -1,4 +1,4 @@
-package com.senati.apptareas;
+package com.senati.apptareas.actividades;
 
 import android.widget.TextView;
 

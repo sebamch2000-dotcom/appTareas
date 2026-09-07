@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dieguito.apptareas">
+    package="com.senati.apptareas">
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,7 @@
         android:label="appTareas"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"> <!-- Tema general sin barra para usar nuestros propios diseños -->
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
 
         <!-- 1. Pantalla de Carga (Splash Screen) - Punto de entrada -->
         <activity

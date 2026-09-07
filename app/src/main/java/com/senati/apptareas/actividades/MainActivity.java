@@ -1,4 +1,4 @@
-package com.senati.apptareas;
+package com.senati.apptareas.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.senati.apptareas.R;
 
 public class MainActivity extends AppCompatActivity {
 

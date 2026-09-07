@@ -1,4 +1,4 @@
-package com.senati.apptareas;
+package com.senati.apptareas.actividades;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.senati.apptareas.R;
 
 public class LoginActivity  extends AppCompatActivity {
     TextView correo, contrasena;
