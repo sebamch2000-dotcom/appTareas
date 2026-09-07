@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.senati.apptareas">
 
     <application
         android:allowBackup="true"
@@ -10,31 +10,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
 
-        <!-- Pantalla de inicio -->
+        <!-- 1. Pantalla de Carga (Splash Screen) - Punto de entrada -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".actividades.SplashActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-        <!-- Registro de usuario -->
+        <!-- 2. Pantalla de Inicio de Sesión -->
         <activity
-            android:name=".RegistroActivity"
+            android:name=".actividades.LoginActivity"
             android:exported="false" />
 
-        <!-- Pantalla principal -->
+        <!-- 3. Pantalla de Registro de Usuario -->
         <activity
-            android:name=".MainActivity"
+            android:name=".actividades.RegistroActivity"
             android:exported="false" />
 
-        <!-- Formulario de tareas -->
+        <!-- 4. Pantalla Principal (Lista y Filtros de Tareas) -->
         <activity
-            android:name=".FormularioActivity"
+            android:name=".actividades.MainActivity"
+            android:exported="false" />
+
+        <!-- 5. Pantalla de Formulario (Crear/Editar Tarea) -->
+        <activity
+            android:name=".actividades.FormularioActivity"
             android:exported="false" />
 
     </application>

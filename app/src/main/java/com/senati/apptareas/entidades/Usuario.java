@@ -1,4 +1,4 @@
-package entidades;
+package com.senati.apptareas.entidades;
 
 public class Usuario {
     private int id;
