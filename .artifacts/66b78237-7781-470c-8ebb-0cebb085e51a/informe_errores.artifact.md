@@ -52,6 +52,11 @@ Este documento resume los fallos críticos encontrados y corregidos en la aplica
 *   **Sincronización:** Los cambios realizados sobre la base del `main` (que contenía los avances de Chanta, Joel y Levano) han sido integrados correctamente en esta rama personal.
 *   **Archivado de Informes:** Los informes técnicos de corrección se han incluido en la rama para facilitar la revisión del código por parte del equipo.
 
+## 10. Identidad Visual (Splash Screen)
+*   **Icono de Marca:** Se ha sustituido el texto plano del Splash por el logo oficial `@drawable/notepad_seeklogo`.
+*   **Créditos del Grupo:** Se añadió la firma "Creado por LMCS" en la parte inferior de la pantalla de carga, con un diseño elegante y sutil (itálica y transparencia), para dar reconocimiento a los autores.
+*   **Composición:** El logo ahora ocupa el centro de la pantalla de carga, manteniendo el nombre de la app y los créditos en la parte inferior para una apariencia profesional.
+
 ---
 ## Pasos de Mantenimiento Realizados
 *   **Gradle Sync:** Se ha ejecutado una sincronización completa de los archivos de Gradle para asegurar que las dependencias y las clases generadas (R.java) estén actualizadas tras las correcciones.
