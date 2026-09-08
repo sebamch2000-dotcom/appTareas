@@ -8,12 +8,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Información de la Base de Datos
     private static final String DATABASE_NAME = "GestionTareas.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Constantes Tabla Usuarios
     public static final String TABLA_USUARIOS = "usuarios";
     public static final String COL_USER_ID = "id";
     public static final String COL_USER_NAME = "nombre";
+    public static final String COL_USER_USERNAME = "usuario";
     public static final String COL_USER_EMAIL = "correo";
     public static final String COL_USER_PASSWORD = "password";
 
@@ -31,6 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREAR_TABLA_USUARIOS = "CREATE TABLE " + TABLA_USUARIOS + " ("
             + COL_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COL_USER_NAME + " TEXT NOT NULL, "
+            + COL_USER_USERNAME + " TEXT UNIQUE NOT NULL, "
             + COL_USER_EMAIL + " TEXT UNIQUE NOT NULL, "
             + COL_USER_PASSWORD + " TEXT NOT NULL);";
 

@@ -1,6 +1,7 @@
 package com.senati.apptareas.adaptadores;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +52,39 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
         holder.tvFechaVencimiento.setText("Vence: " + tarea.getFechaVencimiento());
         holder.chipEstado.setText(tarea.getEstado());
 
-        // Quitar el listener temporalmente al reciclar la vista para evitar falsos positivos
+        // Cambiar color del chip y texto según estado
+        int colorChip, colorTexto;
+        String estado = tarea.getEstado().toLowerCase();
+        
+        if (estado.contains("progres")) {
+            colorChip = contexto.getColor(R.color.estado_progreso);
+            colorTexto = contexto.getColor(R.color.text_estado_progreso);
+        } else if (estado.contains("completada")) {
+            colorChip = contexto.getColor(R.color.estado_completada);
+            colorTexto = contexto.getColor(R.color.text_estado_completada);
+        } else if (estado.contains("no se pudo") || estado.contains("no lograda")) {
+            colorChip = contexto.getColor(R.color.estado_fallida);
+            colorTexto = contexto.getColor(R.color.text_estado_fallida);
+        } else {
+            colorChip = contexto.getColor(R.color.estado_pendiente);
+            colorTexto = contexto.getColor(R.color.text_estado_pendiente);
+        }
+        
+        holder.chipEstado.setChipBackgroundColor(android.content.res.ColorStateList.valueOf(colorChip));
+        holder.chipEstado.setTextColor(colorTexto);
+
         holder.cbCompletada.setOnCheckedChangeListener(null);
-        holder.cbCompletada.setChecked(tarea.getEstado().equalsIgnoreCase("completada"));
+        boolean estaCompletada = tarea.getEstado().equalsIgnoreCase("completada");
+        holder.cbCompletada.setChecked(estaCompletada);
+
+        // Tachado si está completada
+        if (estaCompletada) {
+            holder.tvTitulo.setPaintFlags(holder.tvTitulo.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.tvTitulo.setAlpha(0.5f);
+        } else {
+            holder.tvTitulo.setPaintFlags(holder.tvTitulo.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+            holder.tvTitulo.setAlpha(1.0f);
+        }
 
         // Evento: Cambiar estado desde el CheckBox
         holder.cbCompletada.setOnCheckedChangeListener((buttonView, isChecked) -> {

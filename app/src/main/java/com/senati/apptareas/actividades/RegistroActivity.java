@@ -15,7 +15,7 @@ import com.senati.apptareas.basededatos.UsuarioDAO;
 
 public class RegistroActivity extends AppCompatActivity {
 
-    private TextInputEditText etNombre, etCorreo, etPassword, etConfirmarPassword;
+    private TextInputEditText etNombre, etUsuario, etCorreo, etPassword, etConfirmarPassword;
     private MaterialButton btnRegistrar;
     private TextView tvVolverLogin;
     private UsuarioDAO usuarioDAO;
@@ -30,6 +30,7 @@ public class RegistroActivity extends AppCompatActivity {
 
         // Enlazar las variables con los IDs del diseño XML
         etNombre = findViewById(R.id.etNombreRegistro);
+        etUsuario = findViewById(R.id.etUsuarioRegistro);
         etCorreo = findViewById(R.id.etCorreoRegistro);
         etPassword = findViewById(R.id.etPasswordRegistro);
         etConfirmarPassword = findViewById(R.id.etConfirmarPassword);
@@ -56,12 +57,13 @@ public class RegistroActivity extends AppCompatActivity {
 
     private void registrarNuevoUsuario() {
         String nombre = etNombre.getText().toString().trim();
+        String usuario = etUsuario.getText().toString().trim();
         String correo = etCorreo.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         String confirmar = etConfirmarPassword.getText().toString().trim();
 
         // Validaciones básicas de campos vacíos
-        if (nombre.isEmpty() || correo.isEmpty() || password.isEmpty() || confirmar.isEmpty()) {
+        if (nombre.isEmpty() || usuario.isEmpty() || correo.isEmpty() || password.isEmpty() || confirmar.isEmpty()) {
             Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -73,7 +75,7 @@ public class RegistroActivity extends AppCompatActivity {
         }
 
         // Insertar en la base de datos mediante el DAO
-        long id = usuarioDAO.registrarUsuario(nombre, correo, password);
+        long id = usuarioDAO.registrarUsuario(nombre, usuario, correo, password);
 
         if (id > 0) {
             Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
