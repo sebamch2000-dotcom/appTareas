@@ -4,12 +4,37 @@
     android:layout_height="match_parent"
     android:background="@color/primary">
 
-    <TextView
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/notepad_seeklogo" />
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="appTareas"
-        android:textColor="@color/white"
-        android:textSize="48sp"
-        android:textStyle="bold" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="appTareas"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Creado por LMCS"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:alpha="0.7"
+            android:textStyle="italic" />
+    </LinearLayout>
 </RelativeLayout>
