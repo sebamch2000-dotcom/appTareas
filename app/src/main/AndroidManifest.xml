@@ -10,17 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
 
-        <!-- Pantalla de inicio de sesión -->
+        <!-- Pantalla de Carga (Splash) -->
         <activity
-            android:name=".actividades.LoginActivity"
-            android:exported="true">
-
+            android:name=".actividades.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+
+        <!-- Pantalla de inicio de sesión -->
+        <activity
+            android:name=".actividades.LoginActivity"
+            android:exported="false" />
 
         <!-- Registro -->
         <activity

@@ -13,10 +13,11 @@ public class UsuarioDAO {
     }
 
     // Operación: Registrar un nuevo usuario
-    public long registrarUsuario(String nombre, String correo, String password) {
+    public long registrarUsuario(String nombre, String username, String correo, String password) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues valores = new ContentValues();
         valores.put(DatabaseHelper.COL_USER_NAME, nombre);
+        valores.put(DatabaseHelper.COL_USER_USERNAME, username);
         valores.put(DatabaseHelper.COL_USER_EMAIL, correo);
         valores.put(DatabaseHelper.COL_USER_PASSWORD, password);
 
@@ -25,12 +26,12 @@ public class UsuarioDAO {
         return id;
     }
 
-    // Operación: Validar Login (Verifica si coincide correo y contraseña)
-    public boolean verificarUsuario(String correo, String password) {
+    // Operación: Validar Login (Verifica si coincide usuario y contraseña)
+    public boolean verificarUsuario(String username, String password) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String[] columnas = {DatabaseHelper.COL_USER_ID};
-        String seleccion = DatabaseHelper.COL_USER_EMAIL + " = ?" + " AND " + DatabaseHelper.COL_USER_PASSWORD + " = ?";
-        String[] seleccionArgs = {correo, password};
+        String seleccion = DatabaseHelper.COL_USER_USERNAME + " = ?" + " AND " + DatabaseHelper.COL_USER_PASSWORD + " = ?";
+        String[] seleccionArgs = {username, password};
 
         Cursor cursor = db.query(DatabaseHelper.TABLA_USUARIOS, columnas, seleccion, seleccionArgs, null, null, null);
         int cursorCount = cursor.getCount();
@@ -38,5 +39,21 @@ public class UsuarioDAO {
         db.close();
 
         return cursorCount > 0;
+    }
+
+    // Operación: Obtener lista de todos los nombres de usuario
+    public java.util.List<String> obtenerTodosLosUsernames() {
+        java.util.List<String> usuarios = new java.util.ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(DatabaseHelper.TABLA_USUARIOS, new String[]{DatabaseHelper.COL_USER_USERNAME}, null, null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                usuarios.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        db.close();
+        return usuarios;
     }
 }
