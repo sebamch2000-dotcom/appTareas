@@ -1,6 +1,7 @@
 package com.senati.apptareas.actividades;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -101,17 +102,27 @@ public class FormularioActivity extends AppCompatActivity {
         int anioActual = c.get(Calendar.YEAR);
         int mesActual = c.get(Calendar.MONTH);
         int diaActual = c.get(Calendar.DAY_OF_MONTH);
+        int horaActual = c.get(Calendar.HOUR_OF_DAY);
+        int minutoActual = c.get(Calendar.MINUTE);
 
         DatePickerDialog calendarioFlotante = new DatePickerDialog(this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        int mesReal = month + 1;
-                        String diaFormateado = (dayOfMonth < 10) ? "0" + dayOfMonth : String.valueOf(dayOfMonth);
-                        String mesFormateado = (mesReal < 10) ? "0" + mesReal : String.valueOf(mesReal);
-                        String fechaFinal = diaFormateado + "/" + mesFormateado + "/" + year;
-                        etFechaVencimiento.setText(fechaFinal);
-                    }
+                (view, year, month, dayOfMonth) -> {
+                    int mesReal = month + 1;
+                    String diaFormateado = (dayOfMonth < 10) ? "0" + dayOfMonth : String.valueOf(dayOfMonth);
+                    String mesFormateado = (mesReal < 10) ? "0" + mesReal : String.valueOf(mesReal);
+                    String fechaSeleccionada = diaFormateado + "/" + mesFormateado + "/" + year;
+
+                    // Después de elegir fecha, abrir selector de hora
+                    TimePickerDialog relojFlotante = new TimePickerDialog(FormularioActivity.this,
+                            (view1, hourOfDay, minute) -> {
+                                String horaFormateada = (hourOfDay < 10) ? "0" + hourOfDay : String.valueOf(hourOfDay);
+                                String minutoFormateado = (minute < 10) ? "0" + minute : String.valueOf(minute);
+                                String fechaHoraFinal = fechaSeleccionada + " " + horaFormateada + ":" + minutoFormateado;
+                                
+                                etFechaVencimiento.setText(fechaHoraFinal);
+                            }, horaActual, minutoActual, true);
+                    relojFlotante.show();
+
                 }, anioActual, mesActual, diaActual);
 
         calendarioFlotante.show();

@@ -10,7 +10,13 @@
     <color name="estado_completada">#C8E6C9</color> <!-- Verde Clarito -->
     <color name="estado_fallida">#FFCDD2</color> <!-- Rojo Clarito -->
 
-    <!-- Colores de Texto para Estados (Oscuros para mejor contraste sobre fondo claro) -->
+    <!-- Colores de Fondo para las Tarjetas (Casi Blancos) -->
+    <color name="card_pendiente">#FAFAFA</color>
+    <color name="card_progreso">#FFFDF5</color>
+    <color name="card_completada">#F8FFF8</color>
+    <color name="card_fallida">#FFF8F8</color>
+
+    <!-- Colores de Texto para Estados -->
     <color name="text_estado_pendiente">#616161</color>
     <color name="text_estado_progreso">#F57F17</color>
     <color name="text_estado_completada">#2E7D32</color>
