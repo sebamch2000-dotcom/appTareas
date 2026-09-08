@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
 import com.senati.apptareas.R;
 import com.senati.apptareas.entidades.Tarea;
@@ -53,25 +54,30 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
         holder.chipEstado.setText(tarea.getEstado());
 
         // Cambiar color del chip y texto según estado
-        int colorChip, colorTexto;
+        int colorChip, colorTexto, colorCard;
         String estado = tarea.getEstado().toLowerCase();
         
         if (estado.contains("progres")) {
             colorChip = contexto.getColor(R.color.estado_progreso);
             colorTexto = contexto.getColor(R.color.text_estado_progreso);
+            colorCard = contexto.getColor(R.color.card_progreso);
         } else if (estado.contains("completada")) {
             colorChip = contexto.getColor(R.color.estado_completada);
             colorTexto = contexto.getColor(R.color.text_estado_completada);
+            colorCard = contexto.getColor(R.color.card_completada);
         } else if (estado.contains("no se pudo") || estado.contains("no lograda")) {
             colorChip = contexto.getColor(R.color.estado_fallida);
             colorTexto = contexto.getColor(R.color.text_estado_fallida);
+            colorCard = contexto.getColor(R.color.card_fallida);
         } else {
             colorChip = contexto.getColor(R.color.estado_pendiente);
             colorTexto = contexto.getColor(R.color.text_estado_pendiente);
+            colorCard = contexto.getColor(R.color.card_pendiente);
         }
         
         holder.chipEstado.setChipBackgroundColor(android.content.res.ColorStateList.valueOf(colorChip));
         holder.chipEstado.setTextColor(colorTexto);
+        holder.cardTarea.setCardBackgroundColor(colorCard);
 
         holder.cbCompletada.setOnCheckedChangeListener(null);
         boolean estaCompletada = tarea.getEstado().equalsIgnoreCase("completada");
@@ -118,6 +124,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
         Chip chipEstado;
         CheckBox cbCompletada;
         ImageButton btnEliminar;
+        MaterialCardView cardTarea;
 
         public TareaViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -128,6 +135,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
             chipEstado = itemView.findViewById(R.id.chipEstadoItem);
             cbCompletada = itemView.findViewById(R.id.cbCompletada);
             btnEliminar = itemView.findViewById(R.id.btnEliminarTarea);
+            cardTarea = itemView.findViewById(R.id.cardTarea);
         }
     }
 }

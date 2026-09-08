@@ -35,12 +35,22 @@ Este documento resume los fallos críticos encontrados y corregidos en la aplica
 
 ## 7. Diseño Visual y Estados de Tarea
 *   **Código de Colores Semánticos:** Se han implementado colores pastel para diferenciar los estados:
-    *   **Verde Clarito:** Tareas Completadas.
-    *   **Amarillo Clarito:** Tareas en Progreso.
-    *   **Gris Clarito:** Tareas Pendientes.
-    *   **Rojo Clarito:** Tareas que "No se pudieron completar".
+    *   **Verde Suave:** Tareas Completadas.
+    *   **Amarillo Suave:** Tareas en Progreso.
+    *   **Gris Suave:** Tareas Pendientes.
+    *   **Rojo Suave:** Tareas que "No se pudieron completar".
+*   **Tarjetas con Fondo Sutil:** Ahora, todo el "cuadrado" de la tarea tiene un color de fondo casi blanco (tonalidad muy tenue) que coincide con su estado, mejorando la estética general de la lista.
 *   **Nuevo Estado:** Se añadió la opción "No se pudo completar" en el formulario y un nuevo filtro en la pantalla principal ("No Logradas").
 *   **Gestión de Tareas:** Se aseguró que el botón de eliminar esté disponible en todas las tareas, permitiendo una limpieza rápida de la lista.
+
+## 8. Fecha y Hora de Vencimiento
+*   **Selector Doble:** Se ha mejorado el campo de fecha de vencimiento. Ahora, al tocarlo, primero se abre el calendario (`DatePicker`) y, justo después de elegir el día, se abre automáticamente el reloj (`TimePicker`).
+*   **Formato Completo:** La aplicación ahora guarda y muestra tanto el día como la hora exacta de vencimiento (ej. `08/09/2026 15:30`), lo cual es mucho más útil para tareas críticas.
+
+## 9. Control de Versiones (GitHub)
+*   **Creación de Rama Personal:** Se ha creado y subido la rama `feature/sebastian` al repositorio central.
+*   **Sincronización:** Los cambios realizados sobre la base del `main` (que contenía los avances de Chanta, Joel y Levano) han sido integrados correctamente en esta rama personal.
+*   **Archivado de Informes:** Los informes técnicos de corrección se han incluido en la rama para facilitar la revisión del código por parte del equipo.
 
 ---
 ## Pasos de Mantenimiento Realizados
