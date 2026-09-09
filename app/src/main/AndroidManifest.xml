@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.senati.apptareas">
 
     <application
         android:allowBackup="true"
@@ -10,34 +10,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
 
-        <!-- Pantalla de inicio de sesión -->
+        <!-- Pantalla de Carga (Splash) -->
         <activity
-            android:name=".actividades.LoginActivity"
-            android:exported="true">
-
+            android:name=".actividades.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-        <!-- Registro -->
+        <activity
+            android:name=".actividades.LoginActivity"
+            android:exported="false" />
+
         <activity
             android:name=".actividades.RegistroActivity"
             android:exported="false" />
 
-        <!-- Pantalla principal -->
         <activity
             android:name=".actividades.MainActivity"
             android:exported="false" />
 
-        <!-- Formulario de tareas -->
         <activity
             android:name=".actividades.FormularioActivity"
             android:exported="false" />
 
     </application>
-
 </manifest>
-

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardTarea"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
@@ -68,31 +69,45 @@
                 android:maxLines="2"
                 android:ellipsize="end"/>
 
-            <!-- Contenedor para mostrar ambas fechas -->
+            <!-- Contenedor para mostrar fechas y usuario asignado -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_marginTop="8dp">
 
-                <!-- Campo visible para la fecha de creación[cite: 1] -->
-                <TextView
-                    android:id="@+id/tvItemFechaCreacion"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Creado: 07/09/2026"
-                    android:textSize="12sp"
-                    android:textColor="@color/text_secondary"
-                    android:layout_marginEnd="16dp"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvItemFechaCreacion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Creado: 07/09/2026"
+                        android:textSize="11sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginEnd="12dp"/>
+
+                    <TextView
+                        android:id="@+id/tvItemFecha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vence: 12/10/2026 00:00"
+                        android:textSize="11sp"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold"/>
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tvItemFecha"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvItemAsignado"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Vence: 12/10/2026"
-                    android:textSize="12sp"
-                    android:textColor="@color/primary"
-                    android:textStyle="bold"/>
+                    android:layout_marginTop="2dp"
+                    android:text="Asignado: cruiz"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_secondary"
+                    android:textStyle="italic"/>
             </LinearLayout>
         </LinearLayout>
 

@@ -76,4 +76,9 @@ public class TareaDAO {
             return db.query(DatabaseHelper.TABLA_TAREAS, null, seleccion, new String[]{estadoFiltro}, null, null, null);
         }
     }
+    // 6. Obtener una sola tarea por ID
+    public Cursor obtenerTareaPorId(int id) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        return db.query(DatabaseHelper.TABLA_TAREAS, null, DatabaseHelper.COL_TAREA_ID + " = ?", new String[]{String.valueOf(id)}, null, null, null);
+    }
 }
