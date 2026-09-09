@@ -8,7 +8,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Información de la Base de Datos
     private static final String DATABASE_NAME = "GestionTareas.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 5;
 
     // Constantes Tabla Usuarios
     public static final String TABLA_USUARIOS = "usuarios";
@@ -89,28 +89,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT INTO " + TABLA_USUARIOS + " (" + COL_USER_NAME + "," + COL_USER_USERNAME + "," + COL_USER_EMAIL + "," + COL_USER_PASSWORD + ") VALUES ('"+u[0]+"','"+u[1]+"','"+u[2]+"','"+u[3]+"')");
         }
 
-        // 20 Tareas asignadas para la exposición
+        // 20 Tareas asignadas (19 Pendientes y 1 'No se pudo completar' para ejemplo)
         String[][] tareas = {
             {"Despacho de Carga A1", "Verificar guías de remisión en almacén norte", "Pendiente", "10/09/2026 18:00", "09/09/2026", "cruiz"},
-            {"Mantenimiento Camión 4", "Cambio de aceite y revisión de frenos", "En Progreso", "09/09/2026 15:00", "09/09/2026", "atorres"},
-            {"Inventario de Repuestos", "Conteo cíclico de neumáticos", "Completada", "08/09/2026 12:00", "07/09/2026", "lmeza"},
+            {"Mantenimiento Camión 4", "Cambio de aceite y revisión de frenos", "Pendiente", "09/09/2026 15:00", "09/09/2026", "atorres"},
+            {"Inventario de Repuestos", "Conteo cíclico de neumáticos", "Pendiente", "08/09/2026 12:00", "07/09/2026", "lmeza"},
             {"Reunión de Seguridad", "Charla de 5 minutos sobre EPP", "Pendiente", "11/09/2026 08:30", "09/09/2026", "mjara"},
-            {"Entrega Cliente Mayorista", "Ruta Sur - 15 puntos de entrega", "No se pudo completar", "08/09/2026 20:00", "08/09/2026", "jsolis"},
+            {"Entrega Cliente Mayorista", "Ruta Sur - Incidencia en vehículo", "No se pudo completar", "08/09/2026 20:00", "08/09/2026", "jsolis"},
             {"Limpieza de Almacén", "Ordenamiento de pallets en zona B", "Pendiente", "09/09/2026 10:00", "09/09/2026", "evega"},
-            {"Revisión de Neumáticos", "Inspección de presión y desgaste", "En Progreso", "09/09/2026 11:00", "09/09/2026", "pdiaz"},
-            {"Auditoría de Carga", "Cruce de stock físico vs sistema", "Completada", "08/09/2026 14:00", "08/09/2026", "sluna"},
+            {"Revisión de Neumáticos", "Inspección de presión y desgaste", "Pendiente", "09/09/2026 11:00", "09/09/2026", "pdiaz"},
+            {"Auditoría de Carga", "Cruce de stock físico vs sistema", "Pendiente", "08/09/2026 14:00", "08/09/2026", "sluna"},
             {"Capacitación Montacargas", "Curso teórico-práctico zona sur", "Pendiente", "12/09/2026 09:00", "09/09/2026", "rcastro"},
-            {"Control de Temperatura", "Registro cada 2 horas en frigoríficos", "En Progreso", "09/09/2026 22:00", "09/09/2026", "lsanz"},
-            {"Verificación de Rutas", "Validación de peajes y cierres", "No se pudo completar", "08/09/2026 17:00", "08/09/2026", "vpaz"},
+            {"Control de Temperatura", "Registro cada 2 horas en frigoríficos", "Pendiente", "09/09/2026 22:00", "09/09/2026", "lsanz"},
+            {"Verificación de Rutas", "Validación de peajes y cierres", "Pendiente", "08/09/2026 17:00", "08/09/2026", "vpaz"},
             {"Abastecimiento Combustible", "Llenado de tanques flota pesada", "Pendiente", "10/09/2026 05:00", "09/09/2026", "drios"},
-            {"Registro Devoluciones", "Ingreso de productos dañados al sistema", "Completada", "08/09/2026 16:30", "08/09/2026", "hlara"},
-            {"Etiquetado Mercadería", "Colocación de códigos de barra lote 45", "En Progreso", "09/09/2026 13:00", "09/09/2026", "rpolo"},
+            {"Registro Devoluciones", "Ingreso de productos dañados al sistema", "Pendiente", "08/09/2026 16:30", "08/09/2026", "hlara"},
+            {"Etiquetado Mercadería", "Colocación de códigos de barra lote 45", "Pendiente", "09/09/2026 13:00", "09/09/2026", "rpolo"},
             {"Inspección de EPP", "Verificación de cascos y botas operarios", "Pendiente", "10/09/2026 08:00", "09/09/2026", "fsoto"},
-            {"Actualización Software", "Update de sistema de escaneo", "Completada", "07/09/2026 19:00", "07/09/2026", "gmora"},
-            {"Desinfección Vehículos", "Protocolo sanitario flota reparto", "En Progreso", "09/09/2026 14:30", "09/09/2026", "icruz"},
+            {"Actualización Software", "Update de sistema de escaneo", "Pendiente", "07/09/2026 19:00", "07/09/2026", "gmora"},
+            {"Desinfección Vehículos", "Protocolo sanitario flota reparto", "Pendiente", "09/09/2026 14:30", "09/09/2026", "icruz"},
             {"Monitoreo GPS", "Seguimiento de unidades en tiempo real", "Pendiente", "09/09/2026 23:59", "09/09/2026", "jvera"},
-            {"Archivo de Facturas", "Digitalización de guías mes Agosto", "Completada", "08/09/2026 11:00", "08/09/2026", "mgil"},
-            {"Planificación Semanal", "Definición de rutas Lima Metropolitana", "En Progreso", "10/09/2026 10:00", "09/09/2026", "nleon"}
+            {"Archivo de Facturas", "Digitalización de guías mes Agosto", "Pendiente", "08/09/2026 11:00", "08/09/2026", "mgil"},
+            {"Planificación Semanal", "Definición de rutas Lima Metropolitana", "Pendiente", "10/09/2026 10:00", "09/09/2026", "nleon"}
         };
 
         for (String[] t : tareas) {

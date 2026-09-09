@@ -51,6 +51,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
         holder.tvDescripcion.setText(tarea.getDescripcion());
         holder.tvFechaCreacion.setText("Creado: " + tarea.getFechaCreacion());
         holder.tvFechaVencimiento.setText("Vence: " + tarea.getFechaVencimiento());
+        holder.tvAsignado.setText("Para: " + (tarea.getUsuarioAsignado().isEmpty() ? "Sin asignar" : tarea.getUsuarioAsignado()));
         holder.chipEstado.setText(tarea.getEstado());
 
         // Cambiar color del chip y texto según estado
@@ -120,7 +121,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
     }
 
     public static class TareaViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitulo, tvDescripcion, tvFechaCreacion, tvFechaVencimiento;
+        TextView tvTitulo, tvDescripcion, tvFechaCreacion, tvFechaVencimiento, tvAsignado;
         Chip chipEstado;
         CheckBox cbCompletada;
         ImageButton btnEliminar;
@@ -132,6 +133,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
             tvDescripcion = itemView.findViewById(R.id.tvItemDescripcion);
             tvFechaCreacion = itemView.findViewById(R.id.tvItemFechaCreacion);
             tvFechaVencimiento = itemView.findViewById(R.id.tvItemFecha);
+            tvAsignado = itemView.findViewById(R.id.tvItemAsignado);
             chipEstado = itemView.findViewById(R.id.chipEstadoItem);
             cbCompletada = itemView.findViewById(R.id.cbCompletada);
             btnEliminar = itemView.findViewById(R.id.btnEliminarTarea);
