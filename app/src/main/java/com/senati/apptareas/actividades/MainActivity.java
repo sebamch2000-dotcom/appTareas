@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements TareaAdapter.OnTa
     private List<Tarea> listaTareas;
     private FloatingActionButton fabAgregar;
     private FloatingActionButton fabCerrarSesion;
-    private Chip chipTodos, chipPendientes, chipProgreso, chipCompletadas;
+    private Chip chipTodos, chipPendientes, chipProgreso, chipCompletadas, chipFallidas;
     private String filtroActual = "Todas";
 
     @Override
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements TareaAdapter.OnTa
         chipPendientes = findViewById(R.id.chipPendientes);
         chipProgreso = findViewById(R.id.chipProgreso);
         chipCompletadas = findViewById(R.id.chipCompletadas);
+        chipFallidas = findViewById(R.id.chipFallidas);
 
         rvTareas.setLayoutManager(new LinearLayoutManager(this));
         adapter = new TareaAdapter(this, listaTareas, this);
@@ -81,10 +82,11 @@ public class MainActivity extends AppCompatActivity implements TareaAdapter.OnTa
     }
 
     private void configurarFiltros() {
-        chipTodos.setOnClickListener(v -> cargarTareas("Todas"));
-        chipPendientes.setOnClickListener(v -> cargarTareas("pendiente"));
-        chipProgreso.setOnClickListener(v -> cargarTareas("en progreso"));
-        chipCompletadas.setOnClickListener(v -> cargarTareas("completada"));
+        chipTodos.setOnClickListener(v -> { filtroActual = "Todas"; cargarTareas(filtroActual); });
+        chipPendientes.setOnClickListener(v -> { filtroActual = "Pendiente"; cargarTareas(filtroActual); });
+        chipProgreso.setOnClickListener(v -> { filtroActual = "En Progreso"; cargarTareas(filtroActual); });
+        chipCompletadas.setOnClickListener(v -> { filtroActual = "Completada"; cargarTareas(filtroActual); });
+        chipFallidas.setOnClickListener(v -> { filtroActual = "No se pudo completar"; cargarTareas(filtroActual); });
     }
 
     private void cargarTareas(String filtro) {
