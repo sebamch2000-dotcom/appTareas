@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.senati.apptareas">
 
     <application
         android:allowBackup="true"
@@ -21,27 +21,21 @@
             </intent-filter>
         </activity>
 
-        <!-- Pantalla de inicio de sesión -->
         <activity
             android:name=".actividades.LoginActivity"
             android:exported="false" />
 
-        <!-- Registro -->
         <activity
             android:name=".actividades.RegistroActivity"
             android:exported="false" />
 
-        <!-- Pantalla principal -->
         <activity
             android:name=".actividades.MainActivity"
             android:exported="false" />
 
-        <!-- Formulario de tareas -->
         <activity
             android:name=".actividades.FormularioActivity"
             android:exported="false" />
 
     </application>
-
 </manifest>
-

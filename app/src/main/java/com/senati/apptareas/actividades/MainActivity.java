@@ -3,7 +3,6 @@ package com.senati.apptareas.actividades;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,7 +26,8 @@ public class MainActivity extends AppCompatActivity implements TareaAdapter.OnTa
     private TareaDAO tareaDAO;
     private List<Tarea> listaTareas;
     private FloatingActionButton fabAgregar;
-    private Chip chipTodos, chipPendientes, chipProgreso, chipCompletadas, chipFallidas;
+    private FloatingActionButton fabCerrarSesion;
+    private Chip chipTodos, chipPendientes, chipProgreso, chipCompletadas;
     private String filtroActual = "Todas";
 
     @Override
@@ -40,11 +40,11 @@ public class MainActivity extends AppCompatActivity implements TareaAdapter.OnTa
 
         rvTareas = findViewById(R.id.rvTareas);
         fabAgregar = findViewById(R.id.fabAgregarTarea);
+        fabCerrarSesion = findViewById(R.id.fabCerrarSesion);
         chipTodos = findViewById(R.id.chipTodos);
         chipPendientes = findViewById(R.id.chipPendientes);
         chipProgreso = findViewById(R.id.chipProgreso);
         chipCompletadas = findViewById(R.id.chipCompletadas);
-        chipFallidas = findViewById(R.id.chipFallidas);
 
         rvTareas.setLayoutManager(new LinearLayoutManager(this));
         adapter = new TareaAdapter(this, listaTareas, this);
@@ -55,16 +55,36 @@ public class MainActivity extends AppCompatActivity implements TareaAdapter.OnTa
             startActivity(intent);
         });
 
+        // Evento para el botón de cerrar sesión
+        fabCerrarSesion.setOnClickListener(v -> {
+            new android.app.AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Cerrar Sesión")
+                    .setMessage("¿Estás seguro de que deseas salir de tu cuenta?")
+                    .setPositiveButton("Sí, salir", (dialog, which) -> {
+                        // 1. Limpiar la sesión usando tu SessionManager
+                        com.senati.apptareas.utilidades.SessionManager session = new com.senati.apptareas.utilidades.SessionManager(MainActivity.this);
+                        session.cerrarSesion();
+
+                        // 2. Redirigir al Login
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        // 3. Limpiar el historial para que no pueda volver atrás con el botón de retroceso del celular
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+                    })
+                    .setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss())
+                    .show();
+        });
+
         configurarFiltros();
         cargarTareas(filtroActual);
     }
 
     private void configurarFiltros() {
-        chipTodos.setOnClickListener(v -> { filtroActual = "Todas"; cargarTareas(filtroActual); });
-        chipPendientes.setOnClickListener(v -> { filtroActual = "Pendiente"; cargarTareas(filtroActual); });
-        chipProgreso.setOnClickListener(v -> { filtroActual = "En Progreso"; cargarTareas(filtroActual); });
-        chipCompletadas.setOnClickListener(v -> { filtroActual = "Completada"; cargarTareas(filtroActual); });
-        chipFallidas.setOnClickListener(v -> { filtroActual = "No se pudo completar"; cargarTareas(filtroActual); });
+        chipTodos.setOnClickListener(v -> cargarTareas("Todas"));
+        chipPendientes.setOnClickListener(v -> cargarTareas("pendiente"));
+        chipProgreso.setOnClickListener(v -> cargarTareas("en progreso"));
+        chipCompletadas.setOnClickListener(v -> cargarTareas("completada"));
     }
 
     private void cargarTareas(String filtro) {
@@ -104,13 +124,27 @@ public class MainActivity extends AppCompatActivity implements TareaAdapter.OnTa
 
     @Override
     public void onEliminarClick(Tarea tarea) {
-        tareaDAO.eliminarTarea(tarea.getId());
-        cargarTareas(filtroActual);
+        // Crear y mostrar el AlertDialog
+        new android.app.AlertDialog.Builder(this)
+                .setTitle("Eliminar Tarea")
+                .setMessage("¿Estás seguro de que deseas eliminar la tarea: '" + tarea.getTitulo() + "'?")
+                .setPositiveButton("Eliminar", (dialog, which) -> {
+                    // Si el usuario confirma, procedemos a borrar y recargar la lista
+                    tareaDAO.eliminarTarea(tarea.getId());
+                    cargarTareas(filtroActual);
+                    android.widget.Toast.makeText(this, "Tarea eliminada", android.widget.Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Cancelar", (dialog, which) -> {
+                    // Si cancela, solo cerramos el cuadro de diálogo
+                    dialog.dismiss();
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert) // Ícono de advertencia nativo
+                .show();
     }
 
     @Override
     public void onEstadoCambio(Tarea tarea, boolean isChecked) {
-        String nuevoEstado = isChecked ? "Completada" : "Pendiente";
+        String nuevoEstado = isChecked ? "completada" : "pendiente";
         tareaDAO.actualizarEstadoTarea(tarea.getId(), nuevoEstado);
         cargarTareas(filtroActual);
     }
